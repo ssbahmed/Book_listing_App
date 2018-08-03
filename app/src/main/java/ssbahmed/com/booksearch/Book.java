@@ -5,14 +5,14 @@ public class Book {
     private String author;
     private String des;
     private String publishDate;
-    private String image;
+    private String imageLinks;
 
-    public Book(String t,String a,String p){
+    public Book(String t,String a,String p,String link){
         this.title=t;
         this.author=a;
       //  this.des=d;
         this.publishDate=p;
-        //this.image=i;
+       this.imageLinks = link;
     }
 
     public String getTitle() {
@@ -31,7 +31,7 @@ public class Book {
         return publishDate;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageLinks() {
+        return imageLinks;
     }
 }

@@ -75,7 +75,23 @@ public final class  Query {
 
                 // Extract the value for the key called "title"
                 String title = volumeInfo.getString("title");
-                // Extract the value for the key called "author"
+                // For a given book, extract the JSONObject associated with the
+                // key called "imageLinks", which represents a list of all cover
+                // images in a different size
+                // IMAGE LINKS
+                //------------------------------------------------------------------------------
+                JSONObject bookImageLinks = null;
+                try {
+                    bookImageLinks = volumeInfo.getJSONObject("imageLinks");
+                } catch (JSONException ignored) {
+                }
+                // Convert the image link to a string
+                String bookSmallThumbnail = "";
+                if ( bookImageLinks == null){
+                    bookSmallThumbnail = "null";
+                }else{
+                    bookSmallThumbnail  = bookImageLinks.getString("smallThumbnail");
+                }
                 String author;
 
                 // Check if JSONArray exist
@@ -100,7 +116,7 @@ public final class  Query {
 
                 // Create a new {@link Book} object with the title, author, coverImageUrl, price, currency and language
                 // and url from the JSON response.
-                Book bookItem = new Book(title, author, publishedDate);
+                Book bookItem = new Book(title, author, publishedDate,bookSmallThumbnail);
 
                 // Add the new {@link Book} to the list of booksList.
                 list.add(bookItem);
